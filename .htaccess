@@ -1,0 +1,13 @@
+RewriteEngine on
+# force ssl
+RewriteCond     %{SERVER_PORT} ^80$
+RewriteRule     ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+php_flag engine off
+
+RewriteRule .php - [END,R=400]
+
+<FilesMatch "(?i)\.(php|php3?|phtml)$">
+  Order Deny,Allow
+  Deny from All
+</FilesMatch>
