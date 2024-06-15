@@ -3,6 +3,9 @@ RewriteEngine on
 RewriteCond     %{SERVER_PORT} ^80$
 RewriteRule     ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
+RewriteCond     %{SERVER_NAME} !^www\. [NC]
+RewriteRule     ^(.*)$ https://www.%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
 php_flag engine off
 
 RewriteRule .php - [END,R=400]
